@@ -41,21 +41,28 @@ func main() {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
 			case secretsmanager.ErrCodeResourceNotFoundException:
+				info("ErrCodeResourceNotFoundException")
 				fmt.Println(secretsmanager.ErrCodeResourceNotFoundException, aerr.Error())
 			case secretsmanager.ErrCodeInvalidParameterException:
+				info("ErrCodeInvalidParameterException")
 				fmt.Println(secretsmanager.ErrCodeInvalidParameterException, aerr.Error())
 			case secretsmanager.ErrCodeInvalidRequestException:
+				info("ErrCodeInvalidRequestException")
 				fmt.Println(secretsmanager.ErrCodeInvalidRequestException, aerr.Error())
 			case secretsmanager.ErrCodeDecryptionFailure:
+				info("ErrCodeDecryptionFailure")
 				fmt.Println(secretsmanager.ErrCodeDecryptionFailure, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:
+				info("ErrCodeInternalServiceError")
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
 			default:
+				info("default error !")
 				fmt.Println(aerr.Error())
 			}
 		} else {
 			// Print the error, cast err to awserr.Error to get the Code and
 			// Message from an error.
+			info("Not caught error !")
 			fmt.Println(err.Error())
 		}
 		return
