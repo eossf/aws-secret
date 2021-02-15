@@ -38,6 +38,7 @@ var podsInitContainerPatch string = `[
 
 // only allow pods to pull images from specific registry.
 func admitPods(ar v1.AdmissionReview) *v1.AdmissionResponse {
+	klog.Info("enter into admitPods()")
 	klog.V(2).Info("admitting pods")
 	podResource := metav1.GroupVersionResource{Group: "", Version: "v1", Resource: "pods"}
 	if ar.Request.Resource != podResource {

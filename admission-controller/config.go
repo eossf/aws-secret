@@ -29,7 +29,7 @@ type Config struct {
 }
 
 func configTLS(config Config) *tls.Config {
-	fmt.Println("")
+	fmt.Println("config TLS", config)
 	sCert, err := tls.LoadX509KeyPair(config.CertFile, config.KeyFile)
 	if err != nil {
 		klog.Fatal(err)

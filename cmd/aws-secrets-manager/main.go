@@ -14,9 +14,10 @@ import (
 )
 
 func main() {
-	secretArn := os.Getenv("SECRET_ARN")
-	var AWSRegion string
 	info("Enter into main()")
+	secretArn := os.Getenv("SECRET_ARN")
+	fmt.Println("secretArn:", secretArn)
+	var AWSRegion string
 	if arn.IsARN(secretArn) {
 		arnobj, _ := arn.Parse(secretArn)
 		AWSRegion = arnobj.Region
@@ -78,6 +79,8 @@ func main() {
 	}
 }
 func writeOutput(output string) {
+	info("output string ")
+	info(output)
 	f, err := os.Create("/tmp/secret")
 	if err != nil {
 		return

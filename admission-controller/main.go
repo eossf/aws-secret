@@ -39,12 +39,16 @@ var (
 )
 
 func init() {
+	klog.Info(certFile)
 	flag.StringVar(&certFile, "tls-cert-file", "",
 		"File containing the default x509 Certificate for HTTPS. (CA cert, if any, concatenated after server cert).")
+	klog.Info(keyFile)
 	flag.StringVar(&keyFile, "tls-private-key-file", "",
 		"File containing the default x509 private key matching --tls-cert-file.")
+	klog.Info(port)
 	flag.IntVar(&port, "port", 443,
 		"Secure port that the webhook listens on")
+	klog.Info(sidecarImage)
 	flag.StringVar(&sidecarImage, "sidecar-image", "",
 		"Image to be used as the injected sidecar")
 
