@@ -171,15 +171,16 @@ func serveMutatePodsSidecar(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	klog.Info("Enter into main()")
+	klog.Info("Enter into adm-controller main()")
 	loggingFlags := &flag.FlagSet{}
 	klog.InitFlags(loggingFlags)
 	flag.Parse()
-
 	config := Config{
 		CertFile: certFile,
 		KeyFile:  keyFile,
 	}
+
+	klog.Info(config)
 
 	http.HandleFunc("/mutating-pods", serveMutatePods)
 	http.HandleFunc("/mutating-pods-sidecar", serveMutatePodsSidecar)
@@ -188,6 +189,9 @@ func main() {
 		Addr:      fmt.Sprintf(":%d", port),
 		TLSConfig: configTLS(config),
 	}
+
+	klog.Info("server adm-controller is listening to requests on: ", server.Addr, server.TLSConfig)
+
 	err := server.ListenAndServeTLS("", "")
 	if err != nil {
 		panic(err)

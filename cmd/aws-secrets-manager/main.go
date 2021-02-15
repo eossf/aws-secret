@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	info("Enter into main()")
+	info("Enter into aws-secrets-manager main()")
 	secretArn := os.Getenv("SECRET_ARN")
 	fmt.Println("secretArn:", secretArn)
 	var AWSRegion string
