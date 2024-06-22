@@ -9,7 +9,7 @@ RUN go mod download
 COPY . ./
 RUN go build -o /app -v ./cmd/aws-secrets-manager
 
-FROM amazonlinux:latest
+FROM amazonlinux:2023.4.20240611.0
 RUN yum -y update && yum install -y ca-certificates && rm -rf /var/cache/yum/*
 COPY --from=build /app /.
 ENTRYPOINT ["/app"]
